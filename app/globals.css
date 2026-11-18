@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-ground font-sans text-ink antialiased; }
+}
+@layer components {
+  .btn { @apply inline-flex items-center gap-2 rounded-full bg-brass px-7 py-3.5 font-extrabold text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink; }
+  .btn-ghost { @apply inline-flex items-center rounded-full border-2 border-brass px-6 py-3 font-extrabold text-brass transition hover:bg-brass hover:text-white; }
+  .eyebrow { @apply text-sm font-extrabold tracking-wider text-brass; }
+  .h2 { @apply mt-2 text-4xl font-extrabold leading-tight tracking-tight lg:text-5xl; }
+  .lead { @apply text-lg font-medium leading-relaxed text-muted; }
+  .section { @apply px-6 py-20 lg:px-[72px] lg:py-24; }
+  .panel { @apply rounded-3xl bg-white shadow-[0_24px_60px_rgba(15,46,36,.18)]; }
+  .tilt { transition: transform .35s ease, box-shadow .35s ease; }
+  .tilt:hover { transform: perspective(900px) rotateX(5deg) rotateY(-5deg) translateY(-8px); box-shadow: 0 28px 50px rgba(15,46,36,.18); }
+}
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.float { animation: float 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .float { animation: none; }
+  .tilt { transition: none; }
+  .tilt:hover { transform: none; }
+}
