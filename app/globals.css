@@ -29,8 +29,8 @@
     background-image: linear-gradient(rgba(15,46,36,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(15,46,36,.035) 1px, transparent 1px);
     background-size: 56px 56px;
   }
-  .tone-g { background-color: #CFE3D2; }
-  .tone-l { background-color: #E2EEE4; }
+  .tone-g { background-color: #DDEBE0; }
+  .tone-l { background-color: #EDF5EF; }
 }
 @media (min-width: 640px) {
   .px-wrap, .section { padding-inline: max(1.5rem, calc((100% - 1350px) / 2)); }

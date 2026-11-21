@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: `${site.name} | IT Solutions, Software and Security for Businesses`,
   description: "POS, CCTV, inventory, AI attendance, kitchen IT, queue management, barcode, security doors and waiter calling systems, planned, installed and supported by one team.",
 };
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#CFE3D2" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#DDEBE0" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

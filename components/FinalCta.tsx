@@ -16,7 +16,7 @@ export function FinalCta() {
     <section id="contact-cta" className="px-wrap tone-g py-8 lg:py-10" aria-labelledby="cta-title">
       <div
         className="relative mx-auto max-w-full overflow-hidden rounded-[32px] border border-white/70 px-6 py-10 text-[#0F2E24] sm:px-10 lg:rounded-[44px] lg:px-8 lg:py-10"
-        style={{ background: "linear-gradient(135deg,#CFE3D2 0%,#A9C9B4 50%,#D9D3A8 100%)" }}
+        style={{ background: "linear-gradient(135deg,#DDEBE0 0%,#C6DDCD 50%,#E8E4C6 100%)" }}
       >
         {/* background: grid + glows */}
         <div aria-hidden className="pointer-events-none absolute inset-0">

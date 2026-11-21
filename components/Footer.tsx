@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer
       className="px-wrap border-t border-[#0F2E24]/10 pt-12 text-[#0F2E24]"
-      style={{ background: "linear-gradient(rgba(255,255,255,.5),rgba(255,255,255,.5)), linear-gradient(135deg,#CFE3D2 0%,#A9C9B4 50%,#D9D3A8 100%)" }}
+      style={{ background: "linear-gradient(rgba(255,255,255,.5),rgba(255,255,255,.5)), linear-gradient(135deg,#DDEBE0 0%,#C6DDCD 50%,#E8E4C6 100%)" }}
     >
       <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] lg:gap-12">
         <div>

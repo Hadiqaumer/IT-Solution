@@ -18,11 +18,11 @@ export default function Home() {
         {/* hero and trust share one background so there is no seam between them */}
         <div
           className="relative"
-          style={{ background: "linear-gradient(135deg,#CFE3D2 0%,#A9C9B4 50%,#D9D3A8 100%)" }}
+          style={{ background: "linear-gradient(135deg,#DDEBE0 0%,#C6DDCD 50%,#E8E4C6 100%)" }}
         >
           <Hero />
           <Trust />
-          <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-b from-transparent to-[#CFE3D2]" />
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-b from-transparent to-[#DDEBE0]" />
         </div>
         <About />
         <Services />

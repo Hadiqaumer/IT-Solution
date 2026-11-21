@@ -1,7 +1,7 @@
 import Icon from "./Icon";
 import Carousel3D from "./Carousel3D";
 
-// Palette: Ground #CFE3D2 / #A9C9B4 / #D9D3A8, Ink #0F2E24, Brass #7A4F00,
+// Palette: Ground #DDEBE0 / #C6DDCD / #E8E4C6, Ink #0F2E24, Brass #7A4F00,
 // Sage #A9CDB4, Gold #E3CF8E, Teal #94C9BE, Clay #E1B497
 
 const industries = ["Restaurants & cafés", "Retail", "Call centers", "Offices", "Hotels", "Clinics"];

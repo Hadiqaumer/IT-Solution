@@ -44,7 +44,7 @@ export default function Contact() {
     <section
       id="contact"
       className="section relative overflow-hidden text-[#0F2E24]"
-      style={{ background: "linear-gradient(135deg,#CFE3D2 0%,#A9C9B4 50%,#D9D3A8 100%)" }}
+      style={{ background: "linear-gradient(135deg,#DDEBE0 0%,#C6DDCD 50%,#E8E4C6 100%)" }}
     >
       {/* soft background */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
