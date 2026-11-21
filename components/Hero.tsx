@@ -8,17 +8,16 @@ const industries = ["Restaurants & cafés", "Retail", "Call centers", "Offices",
 
 /* ---------- section ---------- */
 const points = [
-  { t: "Software & apps", bg: "#A9CDB4" },
-  { t: "Hardware & networking", bg: "#E3CF8E" },
-  { t: "CCTV & security", bg: "#94C9BE" },
-  { t: "Installation & training", bg: "#E1B497" },
+  { t: "Software & apps" },
+  { t: "Hardware & networking" },
+  { t: "CCTV & security" },
+  { t: "Installation & training" },
 ];
 
 export default function Hero() {
   return (
     <section
-      className="relative overflow-hidden px-6 py-16 text-[#0F2E24] lg:px-[72px] lg:py-20"
-      style={{ background: "linear-gradient(135deg,#CFE3D2 0%,#A9C9B4 50%,#D9D3A8 100%)" }}
+      className="px-wrap relative overflow-hidden py-8 text-[#0F2E24] lg:py-12"
     >
       <style>{`
         @keyframes heroFloat { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
@@ -54,51 +53,50 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-12">
+      <div className="relative grid items-center gap-4 lg:grid-cols-2 lg:gap-12">
         {/* LEFT: content */}
-        <div className="flex flex-col items-start gap-6 text-left">
-          <span className="flex items-center gap-2 rounded-full border border-white/70 bg-white/70 px-4 py-2 text-[13px] font-extrabold tracking-wide text-[#14665A] shadow-sm backdrop-blur">
+        <div className="flex flex-col items-start gap-4 text-left sm:gap-5">
+          <span className="flex items-center gap-2 rounded-full border border-white/70 bg-white/70 px-3 py-1.5 text-[12px] font-extrabold tracking-wide text-[#14665A] sm:px-4 sm:py-2 sm:text-[13px] shadow-sm backdrop-blur">
             <i className="h-2 w-2 rounded-full bg-[#1F6B45]" /> Complete IT solutions · one team
           </span>
 
-          <h1 className="text-5xl font-extrabold leading-[1.05] tracking-tight xl:text-6xl">
+          <h1 className="h1-fluid">
             Every system your business needs.{" "}
             <span className="text-[#7A4F00]">Connected.</span>
           </h1>
 
-          <p className="max-w-xl text-lg font-semibold text-[#0F2E24]/80 lg:text-xl">
+          <p className="max-w-xl text-base font-semibold text-[#0F2E24]/80 sm:text-lg lg:text-xl">
             Software, hardware, networking and security, planned, installed and supported by one team. From a single shop to a multi-branch company.
           </p>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2.5 sm:gap-3">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[#7A4F00] px-7 py-3.5 text-[15px] font-extrabold text-white shadow-[0_10px_24px_rgba(122,79,0,.35)] transition hover:-translate-y-0.5 hover:brightness-110"
+              className="inline-flex items-center gap-2 rounded-full bg-[#7A4F00] px-5 py-3 text-sm font-extrabold text-white sm:px-7 sm:py-3.5 sm:text-[15px] shadow-[0_10px_24px_rgba(122,79,0,.35)] transition hover:-translate-y-0.5 hover:brightness-110"
             >
               Book a demo <Icon name="arr" size={18} stroke={2.4} />
             </a>
             <a
               href="#services"
-              className="inline-flex items-center rounded-full border-2 border-[#7A4F00] px-7 py-3.5 text-[15px] font-extrabold text-[#7A4F00] transition hover:-translate-y-0.5 hover:bg-white/50"
+              className="inline-flex items-center rounded-full border-2 border-[#7A4F00] px-5 py-3 text-sm font-extrabold text-[#7A4F00] sm:px-7 sm:py-3.5 sm:text-[15px] transition hover:-translate-y-0.5 hover:bg-white/50"
             >
               Explore services
             </a>
           </div>
 
-          <ul className="flex flex-wrap gap-2.5 pt-1">
+          <ul className="flex flex-wrap gap-2">
             {points.map((p) => (
               <li
                 key={p.t}
-                className="flex items-center gap-2 rounded-full border border-white/70 px-4 py-2 text-[13px] font-extrabold shadow-sm"
-                style={{ background: p.bg }}
+                className="flex items-center gap-2 rounded-full border border-[#0F2E24]/15 bg-white/55 px-3 py-1.5 text-[12px] font-extrabold text-[#0F2E24] backdrop-blur transition hover:bg-white/80 sm:px-4 sm:py-2 sm:text-[13px]"
               >
-                <span className="flex shrink-0 text-[#0F2E24]"><Icon name="chk" size={16} stroke={2.6} /></span>
+                <span className="hidden shrink-0 text-[#7A4F00] sm:flex"><Icon name="chk" size={16} stroke={2.6} /></span>
                 {p.t}
               </li>
             ))}
           </ul>
 
-          <p className="text-[15px] font-semibold text-[#0F2E24]/70">
+          <p className="text-[13px] font-semibold text-[#0F2E24]/70 sm:text-[15px]">
             Built for {industries.join(" · ")}
           </p>
         </div>

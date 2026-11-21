@@ -1,4 +1,4 @@
-import type { IconName } from "@/lib/site";
+export type IconName = "pos" | "cam" | "mon" | "ai" | "box" | "usr" | "hat" | "que" | "bar" | "door" | "bell" | "chk" | "arr";
 
 const paths: Record<IconName, string> = {
   pos: "M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8 7h8M8 11h2M12 11h2M8 15h8",

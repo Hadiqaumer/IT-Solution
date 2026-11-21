@@ -20,3 +20,10 @@ Brand: Forest Gold, Plus Jakarta Sans (colors in `tailwind.config.ts`).
 
 CI (type-check + build) runs on every push and pull request: `.github/workflows/ci.yml`.
 Run `npm install` once and commit `package-lock.json` (CI uses `npm ci`).
+
+## Notes (latest update)
+- Content width is capped at 1350px for every section (`.section` / `.px-wrap` in `app/globals.css`); backgrounds stay full width.
+- Section backgrounds alternate between two tones from the hero palette: `.tone-g` and `.tone-l`.
+- Headings are fluid (`.h2`, `.h1-fluid`) so they scale on every device.
+- Testimonials (`components/Testimonials.tsx`) contain sample text: replace with real client quotes.
+- FAQ content is in `components/Faq.tsx`. Logo: `public/logo.webp` (replace with a higher-resolution file when you have one).
