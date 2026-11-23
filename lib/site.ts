@@ -259,7 +259,7 @@ export const services: Service[] = [
       "Analog PBX & Telephone Solutions",
     ],
     cta: "Explore Networking Solutions",
-    cover: "/services/11.webp",
+    cover: "/services/network.webp",
     thumbs: [{ label: "Cabling" }, { label: "Wi-Fi" }, { label: "PBX" }],
   },
 ];
