@@ -8,7 +8,7 @@ const GAP = 1.04; // distance between card centres as a multiple of card width (
 
 const defaultSlides: Slide[] = [
   { title: "POS & Billing", sub: "Fast, accurate sales", bg: "linear-gradient(160deg,#A9CDB4,#1F6B45)", img: "/slides/pos.webp" },
-  { title: "Shift Roster", sub: "AI attendance & scheduling", bg: "linear-gradient(160deg,#E3CF8E,#7A5A00)", img: "/slides/roster.webp" },
+  { title: "Digital Shift Roster", sub: "AI attendance & scheduling", bg: "linear-gradient(160deg,#E3CF8E,#7A5A00)", img: "/slides/roster.webp" },
   { title: "Waiter Alerts", sub: "Call-bell for every table", bg: "linear-gradient(160deg,#94C9BE,#14665A)", img: "/slides/waiter.webp" },
   { title: "CCTV & Security", sub: "Cameras, access & network", bg: "linear-gradient(160deg,#A9CDB4,#0F2E24)", img: "/slides/cctv.webp" },
   { title: "Order Taking", sub: "Phone + WhatsApp orders", bg: "linear-gradient(160deg,#E1B497,#8F4A22)", img: "/slides/order-taking.webp" },
