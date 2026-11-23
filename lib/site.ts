@@ -1,8 +1,9 @@
 // Replace the placeholders with your real details.
 export const site = {
   name: "Tawakal Econ",
-  phone: "971581657677",
-  email: "admin@tawakalecon.com",
+  phone: "971524951912",
+  phone1: "971544908053",
+  email: "sales@tawakalecon.com",
   address: "312 floor 2, Eden Tower, Main Boulevard, Gulberg III, Lahore, Pakistan",
   facebook: "https://www.facebook.com/share/1MFQyQVmai/?mibextid=wwXIfr",
 };

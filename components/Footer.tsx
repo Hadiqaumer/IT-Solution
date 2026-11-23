@@ -41,6 +41,7 @@ export default function Footer() {
           <p className={col}>Contact</p>
           <ul className={list}>
             <li>{site.phone}</li>
+            <li>{site.phone1}</li>
             <li>{site.email}</li>
             <li>{site.address}</li>
             <li>

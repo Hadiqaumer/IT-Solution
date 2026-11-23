@@ -1,5 +1,5 @@
 // Replace with the real WhatsApp number: country code + number, digits only (e.g. 923001234567)
-const WHATSAPP_NUMBER = "971581657677";
+const WHATSAPP_NUMBER = "971524951912";
 const WHATSAPP_TEXT = "Hello Tawakal Econ, I would like to discuss my project.";
 const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
 
