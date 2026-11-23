@@ -1,11 +1,43 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { site } from "@/lib/site";
 
-// WhatsApp: uses site.whatsapp if you have it, otherwise the phone number's digits.
-// wa.me needs country code + number, digits only (e.g. 923001234567).
-const whatsappNumber = (site as { whatsapp?: string }).whatsapp ?? site.phone;
-const whatsappHref = `https://wa.me/${whatsappNumber.replace(/\D/g, "")}?text=${encodeURIComponent("Hello Tawakal Econ, I would like to discuss my project.")}`;
+// 1) Paste the "Web app" URL of your NEW Apps Script deployment here (ends with /exec).
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx3uxuFMpUuTKgzsyfeaP0HuhrVp8b5dPcpjLw5iZ5ZWqMND0iKtQ-tnpvX5VLkCmA3NQ/exec";
+
+// 2) WhatsApp number that receives the enquiries (country code + number, digits only).
+const WHATSAPP_NUMBER = "971524951912";
+
+const SERVICES = [
+  "Custom Software Development",
+  "POS & Business Management Systems",
+  "CCTV & Smart Surveillance Solutions",
+  "AI & Business Automation",
+  "Inventory & Accounting Software",
+  "Restaurant & Kitchen IT Solutions",
+  "AI Attendance & Workforce Management",
+  "GPS Tracking & Fleet Management",
+  "Queue Management Systems",
+  "Smart Access Control & Security Doors",
+  "Website & E-commerce Development",
+];
+
+type Lead = { service: string; name: string; phone: string; message: string };
+
+const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Tawakal Econ, I would like to discuss my project.")}`;
+
+function waLink(d: Lead) {
+  const text = [
+    "Hello Tawakal Econ, I just sent an enquiry from your website.",
+    "",
+    "Name: " + d.name,
+    "Service: " + d.service,
+    "Phone: " + (d.phone || "-"),
+    "",
+    "Message: " + (d.message || "-"),
+  ].join("\n");
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
 
 const field =
   "w-full rounded-xl border border-[#0F2E24]/15 bg-white px-4 py-3 text-[15px] font-semibold text-[#0F2E24] placeholder:font-medium placeholder:text-[#0F2E24]/40 transition focus-visible:border-[#7A4F00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#7A4F00]/40";
@@ -24,19 +56,73 @@ const Icon = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<"idle" | "sending" | "ok" | "error">("idle");
+  const [errMsg, setErrMsg] = useState("");
+  const [waUrl, setWaUrl] = useState("");
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = e.currentTarget; // keep a reference: currentTarget is null after an await
-    setState("sending");
-    const data = Object.fromEntries(new FormData(form));
-    try {
-      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      setState(res.ok ? "ok" : "error");
-      if (res.ok) form.reset();
-    } catch {
+    if (state === "sending") return;
+
+    const form = formRef.current;
+    if (!form) return;
+    const fd = new FormData(form);
+
+    const lead: Lead = {
+      service: String(fd.get("service") ?? "").trim(),
+      name: String(fd.get("name") ?? "").trim(),
+      phone: String(fd.get("phone") ?? "").trim(),
+      message: String(fd.get("message") ?? "").trim(),
+    };
+
+    if (lead.name.length < 2) {
       setState("error");
+      setErrMsg("Please enter your name.");
+      return;
+    }
+    if (lead.phone.replace(/\D/g, "").length < 9) {
+      setState("error");
+      setErrMsg("Please enter a valid phone number.");
+      return;
+    }
+
+    // Honeypot: real visitors never fill this. Bots do. Pretend success, send nothing.
+    const isBot = String(fd.get("hp_trap") ?? "").trim() !== "";
+
+    setState("sending");
+    setErrMsg("");
+
+    try {
+      if (!isBot) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 20000);
+        try {
+          // text/plain + no-cors: Google Apps Script does not answer CORS preflight requests.
+          await fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify({ ...lead, page: window.location.href, submittedAt: new Date().toISOString() }),
+            signal: controller.signal,
+            keepalive: true,
+          });
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+
+      const link = waLink(lead);
+      setWaUrl(link);
+      setState("ok");
+      form.reset();
+      setTimeout(() => {
+        window.location.href = link;
+      }, 2500);
+    } catch (err) {
+      console.error("Contact form error:", err);
+      setState("error");
+      setErrMsg("Could not send. Please try again or message us on WhatsApp.");
     }
   }
 
@@ -118,6 +204,7 @@ export default function Contact() {
         {/* right: form card */}
         <div style={{ perspective: 1400 }}>
           <form
+            ref={formRef}
             onSubmit={onSubmit}
             noValidate
             className="rounded-[28px] border border-white/90 p-5 sm:p-8 lg:[transform:rotateY(-3deg)_rotateX(1.5deg)]"
@@ -139,16 +226,24 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="type" className={label}>Business type</label>
-                <select id="type" name="type" className={field}>
-                  <option>Restaurant or café</option>
-                  <option>Other business</option>
+                <label htmlFor="service" className={label}>Service you need</label>
+                <select id="service" name="service" className={field} defaultValue={SERVICES[0]}>
+                  {SERVICES.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
                 </select>
               </div>
 
               <div>
                 <label htmlFor="message" className={label}>What do you need?</label>
-                <textarea id="message" name="message" rows={4} className={`${field} resize-none`} placeholder="POS, CCTV, attendance, custom software, full package..." />
+                <textarea id="message" name="message" rows={4} className={`${field} resize-none`} placeholder="Tell us a little about your business and what you need..." />
+              </div>
+
+              {/* honeypot: hidden from people, odd name so browser autofill ignores it */}
+              <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+                <input name="hp_trap" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
               </div>
 
               <button
@@ -163,9 +258,14 @@ export default function Contact() {
                 role="status"
                 className={`min-h-6 text-[14px] font-bold ${state === "ok" ? "text-[#1F6B45]" : state === "error" ? "text-[#B3402A]" : ""}`}
               >
-                {state === "ok" && "Thank you. We will contact you soon."}
-                {state === "error" && "Could not send. Check your name and phone, then try again."}
+                {state === "ok" && "Thank you. Redirecting you to WhatsApp..."}
+                {state === "error" && errMsg}
               </p>
+              {state === "ok" && waUrl && (
+                <a href={waUrl} className="text-sm font-bold underline">
+                  Not redirected? Open WhatsApp
+                </a>
+              )}
             </div>
           </form>
         </div>
