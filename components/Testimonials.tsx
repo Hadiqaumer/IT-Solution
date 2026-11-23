@@ -1,8 +1,8 @@
 // REPLACE the quotes, names and roles below with real client testimonials before launch.
 const items = [
-  { quote: "Billing is faster and our end-of-day sales report is ready without any manual work.", name: "[Client name]", role: "[Owner, Restaurant]", tint: "#A9CDB4", tick: "#1F6B45" },
-  { quote: "We can check every branch from one screen, and the installation team was neat and on time.", name: "[Client name]", role: "[Manager, Retail store]", tint: "#E3CF8E", tick: "#7A5A00" },
-  { quote: "Shift attendance is now automatic, so payroll no longer needs hours of checking.", name: "[Client name]", role: "[Operations, Business]", tint: "#94C9BE", tick: "#14665A" },
+  { quote: "Billing is faster and our end-of-day sales report is ready without any manual work.", name: "Zahid", role: "Owner, Restaurant", tint: "#A9CDB4", tick: "#1F6B45" },
+  { quote: "We can check every branch from one screen, and the installation team was neat and on time.", name: "Akram Munir", role: "Manager, Retail store", tint: "#E3CF8E", tick: "#7A5A00" },
+  { quote: "Shift attendance is now automatic, so payroll no longer needs hours of checking.", name: "Waheed Aslam", role: "Operations, Business", tint: "#94C9BE", tick: "#14665A" },
 ];
 
 const Star = () => (
@@ -35,3 +35,4 @@ export default function Testimonials() {
     </section>
   );
 }
+
